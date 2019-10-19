@@ -20,7 +20,7 @@ export class LoginService {
 
     let headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa("s2-client:secret")});
     let options = new RequestOptions({ headers: headers });
-     this._http.post('http://localhost:8762/oauth/token', params.toString(), options)
+     this._http.post('http://travel-management-zuul-server:8762/oauth/token', params.toString(), options)
     .map(res => res.json())
     .subscribe(
       data => this.saveToken(data, loginData.userId),
