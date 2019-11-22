@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { Cookie } from 'ng2-cookies';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { environment } from './../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
@@ -24,7 +25,7 @@ export class TripService {
   getTrips() : Observable<Trip[]>{
     var headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+Cookie.get('access_token')});
     var options = new RequestOptions({ headers: headers });
-    return this._http.get("http://travel-management-zuul-server-travel-management.apps.na311.openshift.opentlc.com/trip-query/summary", options)
+    return this._http.get(environment.apiUrl+"/trip-query/summary", options)
                    .map((res:Response) => res.json())
                    .catch((error:any) => throwError(error));
   }
