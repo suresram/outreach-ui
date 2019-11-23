@@ -18,6 +18,7 @@ import {TripService, Trip} from './trip.service'
         </tr>
       </thead>
       <tbody>
+      	<h3>{{errorText}}</h3>
         <tr *ngFor="let trip of trips">
          <th scope="row">{{trip.tripId}}</th>
           <td>{{trip.fromLocation}}</td>
@@ -34,12 +35,16 @@ import {TripService, Trip} from './trip.service'
 export class TripsComponent implements OnInit{
 
     public trips:Trip[]=[];
+    public errorText:string;
     constructor(private _service:TripService) {}
 
     ngOnInit(){
         this._service.getTrips()
          .subscribe(
                      data => this.trips = data,
-                     error =>  console.log(error));
+                     error =>  {
+                     this.errorText=error._body;
+                     console.log(error)
+                     });
     }
 }
