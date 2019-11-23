@@ -25,7 +25,7 @@ export class TripService {
   getTrips() : Observable<Trip[]>{
     var headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+Cookie.get('access_token')});
     var options = new RequestOptions({ headers: headers });
-    return this._http.get(environment.apiUrl+"/trip-query/summary", options)
+    return this._http.get(environment.apiUrl+"/trip-query/v1/summary", options)
                    .map((res:Response) => res.json())
                    .catch((error:any) => throwError(error));
   }
