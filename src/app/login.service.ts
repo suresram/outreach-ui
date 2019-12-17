@@ -34,6 +34,7 @@ export class LoginService {
     var expireDate = new Date().getTime() + (1000 * token.expires_in);
     Cookie.set("userId",userId, expireDate);
     Cookie.set("access_token", token.access_token, expireDate);
+    Cookie.set("roles", token.roles, expireDate);
     console.log('Obtained Access token');
     this._router.navigate(['/']);
   }
@@ -47,6 +48,7 @@ export class LoginService {
   logout() {
     Cookie.delete('access_token');
     Cookie.delete('userId');
+    Cookie.delete('roles');
     this._router.navigate(['/login']);
   }
 }

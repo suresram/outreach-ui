@@ -7,14 +7,16 @@ import { RouterModule }   from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login.component';
 import { HomeComponent } from './home.component';
-import { TripsComponent } from './trips.component';
+import { EventsComponent } from './events.component';
+import { EventComponent } from './event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    TripsComponent    
+    EventsComponent,
+    EventComponent  
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { TripsComponent } from './trips.component';
     HttpModule,
     RouterModule.forRoot([
      { path: '', component: HomeComponent },
-    { path: 'login', component: LoginComponent }])
+    { path: 'login', component: LoginComponent },
+    { path: 'event', component: EventComponent }])
   ],
   providers: [],
   bootstrap: [AppComponent]

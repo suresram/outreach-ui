@@ -6,7 +6,7 @@ import {LoginService} from './login.service'
   providers: [LoginService],  
   template: `
     <div class="col-sm-6">
-        <h1>Login</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
         <div class="col-sm-12 form-group">
              <label>UserId</label>
              <input class="form-control" type="text" [(ngModel)]="loginData.userId" />
