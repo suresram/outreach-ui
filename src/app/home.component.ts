@@ -21,7 +21,7 @@ import {LoginService} from './login.service'
  
 export class HomeComponent {
  
- @ViewChild(EventsComponent) eventsComponent:EventsComponent;
+ @ViewChild(EventsComponent, {static: false}) eventsComponent:EventsComponent;
      public enableEventForm:boolean;
     public userId:string;
     constructor(

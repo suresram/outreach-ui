@@ -68,7 +68,7 @@ export class EventsComponent implements OnInit{
          .subscribe(
                      data => this.events = data,
                      error =>  {
-                     this.errorText=error._body;
+                     this.errorText=JSON.stringify(error.error);
                      console.log(error)
                      });
     }
@@ -78,7 +78,7 @@ export class EventsComponent implements OnInit{
          .subscribe(
                      data => alert(data),
                      error =>  {
-                       alert(error._body)
+                       alert(JSON.stringify(error.error))
                      });
     }
 

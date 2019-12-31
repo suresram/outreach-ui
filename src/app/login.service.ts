@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import { Cookie } from 'ng2-cookies';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders  } from  "@angular/common/http";
 import { environment } from './../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class LoginService {
   constructor(
-    private _router: Router, private _http: Http){}
+    private _router: Router, private _http: HttpClient ){}
  
   obtainAccessToken(loginData){
     let params = new URLSearchParams();
@@ -19,10 +19,9 @@ export class LoginService {
     params.append('grant_type','password');
     params.append('client_id','s2-client');
 
-    let headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa("s2-client:secret")});
-    let options = new RequestOptions({ headers: headers });
+    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa("s2-client:secret")});
+    let options = { headers: headers };
      this._http.post(environment.apiUrl+'/oauth/token', params.toString(), options)
-    .map(res => res.json())
     .subscribe(
       data => this.saveToken(data, loginData.userId),
       err => alert('Invalid Credentials')
